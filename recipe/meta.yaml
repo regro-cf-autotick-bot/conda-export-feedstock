@@ -12,7 +12,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - conda-export = conda_export:main
 
@@ -35,7 +35,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Platform agnostic conda environment export'
+  summary: Platform agnostic conda environment export
   description: |
     An alternative to `conda env export` that helps create portable environment 
     specifications with minimal number of packages. Resulting specification is 
