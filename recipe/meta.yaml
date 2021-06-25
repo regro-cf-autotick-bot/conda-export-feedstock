@@ -1,5 +1,5 @@
 {% set name = "conda-export" %}
-{% set version = "0.0.2" %}
+{% set version = "0.0.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/olegtarasov/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 17b9dca6f09a96c74597fa27599b85f51ca6c63c1a54a0d706844c17b7fdff30
+  sha256: 745f704a17691fc34e373fe803559d21b6170c0bcc04b8218598ab71903355dc
 
 build:
   noarch: python
