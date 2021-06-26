@@ -1,5 +1,5 @@
 {% set name = "conda-export" %}
-{% set version = "0.0.3" %}
+{% set version = "0.0.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/olegtarasov/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 745f704a17691fc34e373fe803559d21b6170c0bcc04b8218598ab71903355dc
+  sha256: 73fea89cfeb2ec132292eb79d135f165a6d3cc9e8d80c2e3a58f6c3a5c9f6db5
 
 build:
   noarch: python
@@ -25,6 +25,7 @@ requirements:
     - python >=3.6
     - pip
     - conda
+    - networkx
 
 test:
   commands:
@@ -38,9 +39,15 @@ about:
   summary: 'Platform agnostic conda environment export'
   description: |
     An alternative to `conda env export` that helps create portable environment 
-    specifications with minimal number of packages. Resulting specification is 
-    similar to `conda env export --from-history`, but also includes packages 
-    that were installed using `pip`.
+    specifications with minimum number of packages. 
+
+    Conda-export creates environment specifications which contain only top-level 
+    (non-transient) dependencies. It tries to minimize specific version information and 
+    total number of packages, so that the resulting spec maximizes [upgradability](https://pythonspeed.com/articles/conda-dependency-management/#three-kinds-of-dependency-specification).
+    At the same time, it respects specific package versions that were used while creating 
+    the environment. If, at some point, you installed a package with explicit version (e. g. 
+    `conda install pytorch=1.9.0`), `conda-export` will include this specific version in 
+    the resulting spec file.
   doc_url: https://github.com/olegtarasov/conda-export
   dev_url: https://github.com/olegtarasov/conda-export
 
