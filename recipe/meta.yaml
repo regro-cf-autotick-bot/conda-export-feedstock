@@ -11,23 +11,25 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
   entry_points:
     - conda-export = conda_export:main
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - pip
     - conda
     - networkx
 
 test:
+  requires:
+    - python {{ python_min }}
   commands:
     - conda-export -h
 
